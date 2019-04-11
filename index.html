@@ -7,7 +7,7 @@
 </head>
 
 <body>
-BLE_Test 005.5
+BLE_Test 005.6
 <br>
 <br>  
 <button id="connect">接続</button>
@@ -130,25 +130,25 @@ function send_message() {
 // led1 on 送信
 function send_led1_on() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led1_Characteristic.writeValue(new TextEncoder().encode("ON"));        
+  led1_Characteristic.writeValue(new TextEncoder().encode("1"));        
 } 
   
 // led1 off 送信
 function send_led1_off() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led1_Characteristic.writeValue(new TextEncoder().encode("OFF"));        
+  led1_Characteristic.writeValue(new TextEncoder().encode("0"));        
 } 
   
 // led2 on 送信
 function send_led2_on() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led2_Characteristic.writeValue(new TextEncoder().encode("ON"));        
+  led2_Characteristic.writeValue(new TextEncoder().encode("1"));        
 } 
   
 // led2 off 送信
 function send_led2_off() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led2_Characteristic.writeValue(new TextEncoder().encode("OFF"));        
+  led2_Characteristic.writeValue(new TextEncoder().encode("0"));        
 }
   
 // sw 受信  
