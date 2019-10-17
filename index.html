@@ -9,6 +9,7 @@
 <body>
 BLE_Test 005.6
 <br>
+接続デバイス名 <input id="devicename" value="未接続" />
 <br>  
 <button id="connect">接続</button>
 <button id="disconnect">切断</button>
@@ -107,6 +108,7 @@ function connect() {
   .then(characteristic  => {
     console.log("characteristic")
     alert("BLE接続成功");
+    document.querySelector("#devicename").value = bluetoothDevice.name;
     message_Characteristic = characteristic[0];
     led1_Characteristic = characteristic[1];
     led2_Characteristic = characteristic[2];
@@ -185,6 +187,7 @@ let message_val=0;
 //BEL切断処理
 function disconnect() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected) return ;
+    document.querySelector("#devicename").value = "未接続";
   bluetoothDevice.gatt.disconnect();
   alert("BLE切断")
 }
