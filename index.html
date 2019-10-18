@@ -10,6 +10,7 @@
 <body>
 BLE_Test 005.6
 <br>
+接続デバイス名 <input id="devicename" value="未接続" />
 <br>  
 <button id="connect">接続</button>
 <button id="disconnect">切断</button>
@@ -33,6 +34,8 @@ SW状態<br>
 <button id="message_send">送信</button>  <button id="message_rec">受信</button>  
 <br>  
 
+  
+
 <script src="d3/d3.js"></script>    
 
 <script>
@@ -40,7 +43,7 @@ var bluetoothDevice;
 var characteristic;
 // UUIDの登録
 var SERVICE_UUID    = '6926486a-34a8-11e9-b210-d663bd873d93';   // サービス
-var SWITCH_UUID		  = '69264b4e-34a8-11e9-b210-d663bd873d93';   // スイッチ
+var SWITCH_UUID		  = '692655f8-34a8-11e9-b210-d663bd873d93';   // スイッチ
 var ADC_UUID  		  = '69264cd4-34a8-11e9-b210-d663bd873d93';   // A/D値
 var RESERVE_IN_UUID = '69264e1e-34a8-11e9-b210-d663bd873d93';   // 予備入力
 var MESSAGE_UUID  	= '692655f8-34a8-11e9-b210-d663bd873d93';   // メッセージ
@@ -69,14 +72,14 @@ d3.select("#led1_send_off").on("click", send_led1_off);
 d3.select("#led2_send_on").on("click", send_led2_on);
 d3.select("#led2_send_off").on("click", send_led2_off);
 d3.select("#sw_get").on("click", get_sw);
-
-
-
-//デバイスに接続する
+  
+  
+  
+  //デバイスに接続する
 function connect() {
   let options = {};
 //  options.acceptAllDevices = true;    // すべてのデバイスを表示
-// 特定のデバイスを表示
+  // 特定のデバイスを表示
   options.filters = [
     {services: [SERVICE_UUID]},         // サービスUUIDの指定
 //    {name: "BLE_01"}                    // デバイス名の指定
@@ -106,14 +109,14 @@ function connect() {
   .then(characteristic  => {
     console.log("characteristic")
     alert("BLE接続成功");
+    document.querySelector("#devicename").value = bluetoothDevice.name;
     message_Characteristic = characteristic[0];
-    led1_Characteristic    = characteristic[1];
-    led2_Characteristic    = characteristic[2];
-    sw_Characteristic      = characteristic[3];
+    led1_Characteristic = characteristic[1];
+    led2_Characteristic = characteristic[2];
+    sw_Characteristic = characteristic[3];
     
-    console.log("success:connect BLE");
-    })  
-  
+      console.log("success:connect BLE");    
+  })  
   .catch(error => {
     console.log(error);
   });    
@@ -156,8 +159,8 @@ function get_sw() {
 let sw_val=0;
   try {
       sw_Characteristic.readValue()
-      .then(value => {
-         sw_val = value;
+      .then(value1 => {
+         sw_val = value1;
         console.log(new Uint8Array(sw_val));
         document.querySelector("#val_sw").value = new TextDecoder("utf-8").decode(sw_val);
       });   
@@ -172,19 +175,20 @@ function rec_message() {
 let message_val=0;
   try {
     message_Characteristic.readValue()
-      .then(value => {
-         message_val = value;
+      .then(value2 => {
+         message_val = value2;
         console.log(new Uint8Array(message_val));
         document.querySelector("#message").value = new TextDecoder("utf-8").decode(message_val);
       });
   }
-  catch (e) {
-    console.log(e);
+  catch (f) {
+    console.log(f);
   }
 }  
 //BEL切断処理
 function disconnect() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected) return ;
+    document.querySelector("#devicename").value = "未接続";
   bluetoothDevice.gatt.disconnect();
   alert("BLE切断")
 }
