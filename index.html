@@ -107,11 +107,10 @@ function connect() {
     console.log("service", service)
 //  return service.getCharacteristic(CHARACTERISTIC_UUID)
     return Promise.all([
-        service.getCharacteristic(MESSAGE_UUID),
         service.getCharacteristic(LED1_UUID),
         service.getCharacteristic(LED2_UUID),
         service.getCharacteristic(LED3_UUID),      
-        service.getCharacteristic(AD_UUID),
+        service.getCharacteristic(ADC_UUID),
       service.getCharacteristic(SWITCH_UUID),
       
       ])
@@ -121,10 +120,11 @@ function connect() {
     console.log("characteristic")
     alert("BLE接続成功");
     document.querySelector("#devicename").value = bluetoothDevice.name;
-    message_Characteristic = characteristic[0];
     led1_Characteristic = characteristic[1];
     led2_Characteristic = characteristic[2];
-    sw_Characteristic = characteristic[3];
+    led3_Characteristic = characteristic[3];
+    sw_Characteristic = characteristic[4];
+    adc_Characteristic = characteristic[5];
     
       console.log("success:connect BLE");    
   })  
@@ -178,10 +178,10 @@ let sw_val=0;
 function get_ad() {
 let ad_val=0;
   try {
-      sw_Characteristic.readValue()
+      adc_Characteristic.readValue()
       .then(value2 => {
          ad_val = value2;
-        console.log(new Uint8Array(sw_val));
+        console.log(new Uint8Array(ad_val));
         document.querySelector("#val_ad").value = new TextDecoder("utf-8").decode(ad_val);
       });   
   }
