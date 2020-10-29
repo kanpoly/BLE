@@ -47,7 +47,7 @@ AD値受信<br>
 var bluetoothDevice;
 var characteristic;
 // UUIDの登録
-var SERVICE_UUID    = '538B6CDB-D0B6-42D2-962B-FB9CB91C8CD2';   // サービス
+var SERVICE_UUID    = '538B6cdb-d0b6-42d2-962b-fB9cb91c8cd2';   // サービス
 var SWITCH_UUID		  = 'E70EB45C-30E1-49F0-9CDE-A5771F918791';   // スイッチ
 var ADC_UUID  		  = '552AB02B-1973-4C3B-87E5-F32384E10481';   // A/D値
 var RESERVE_IN_UUID = '69264e1e-34a8-11e9-b210-d663bd873d93';   // 予備入力
@@ -77,8 +77,10 @@ d3.select("#led1_send_on").on("click", send_led1_on);
 d3.select("#led1_send_off").on("click", send_led1_off);
 d3.select("#led2_send_on").on("click", send_led2_on);
 d3.select("#led2_send_off").on("click", send_led2_off);
+d3.select("#led3_send_on").on("click", send_led3_on);
+d3.select("#led3_send_off").on("click", send_led3_off);  
 d3.select("#sw_get").on("click", get_sw);
-  
+d3.select("#ad_get").on("click", get_ad);
   
   
   //デバイスに接続する
@@ -107,8 +109,11 @@ function connect() {
     return Promise.all([
         service.getCharacteristic(MESSAGE_UUID),
         service.getCharacteristic(LED1_UUID),
-        service.getCharacteristic(LED2_UUID),      
-        service.getCharacteristic(SWITCH_UUID),       
+        service.getCharacteristic(LED2_UUID),
+        service.getCharacteristic(LED3_UUID),      
+        service.getCharacteristic(AD_UUID),
+      service.getCharacteristic(SWITCH_UUID),
+      
       ])
     
   })
@@ -128,14 +133,7 @@ function connect() {
   });    
 }
  
-// メッセージを送信
-function send_message() {
-  if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  var text = document.querySelector("#message").value;
-  var arrayBuffe = new TextEncoder().encode(text);
-  message_Characteristic.writeValue(arrayBuffe);        
-} 
-  
+ 
 // led1 on 送信
 function send_led1_on() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
@@ -176,15 +174,15 @@ let sw_val=0;
   }
 }
   
-// sw 受信 
+// ad 受信 
 function get_ad() {
 let ad_val=0;
   try {
       sw_Characteristic.readValue()
-      .then(value1 => {
-         ad_val = value1;
+      .then(value2 => {
+         ad_val = value2;
         console.log(new Uint8Array(sw_val));
-        document.querySelector("#val_sw").value = new TextDecoder("utf-8").decode(sw_val);
+        document.querySelector("#val_ad").value = new TextDecoder("utf-8").decode(ad_val);
       });   
   }
   catch (e) {
