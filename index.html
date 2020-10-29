@@ -8,7 +8,7 @@
 </head>
 
 <body>
-BLE_Test 005.9
+BLE_Test 006.0
 <br>
 接続デバイス名 <input id="devicename" value="未接続" />
 <br>  
@@ -84,12 +84,12 @@ d3.select("#adc_get").on("click", get_adc);
   //デバイスに接続する
 function connect() {
   let options = {};
-    options.acceptAllDevices = true;    // すべてのデバイスを表示
+  //  options.acceptAllDevices = true;    // すべてのデバイスを表示
   // 特定のデバイスを表示
-  // options.filters = [
-  //   {services: [SERVICE_UUID]},         // サービスUUIDの指定
+   options.filters = [
+     {services: [SERVICE_UUID]},         // サービスUUIDの指定
   //    {name: "BLE_01"}                    // デバイス名の指定
-  // ];
+   ];
   
   navigator.bluetooth.requestDevice(options)
   .then(device => {
@@ -121,9 +121,8 @@ function connect() {
     led1_Characteristic = characteristic[1];
     led2_Characteristic = characteristic[2];
     led3_Characteristic = characteristic[3];
-    sw_Characteristic = characteristic[4];
-    adc_Characteristic = characteristic[5];
-    
+    adc_Characteristic = characteristic[4];
+    sw_Characteristic = characteristic[5];    
       console.log("success:connect BLE");    
   })  
   .catch(error => {
