@@ -8,7 +8,7 @@
 </head>
 
 <body>
-BLE_Test 005.7
+BLE_Test 005.8
 <br>
 接続デバイス名 <input id="devicename" value="未接続" />
 <br>  
@@ -28,16 +28,16 @@ LED_B<br>
 <button id="led3_send_on">ON</button>  <button id="led3_send_off">OFF</button>
 <br>
 <br>
-
+AD値受信<br>
+<input id="val_ad" value="" />
+<button id="ad_get">受信</button>  
+<br> 
 SW状態<br>
 <input id="val_sw" value="" />
 <button id="sw_get">受信</button>  
 <br>
 <br>
-AD値受信<br>
-<input id="val_ad" value="" />
-<button id="ad_get">受信</button>  
-<br>  
+ 
 
   
 
@@ -155,6 +155,19 @@ function send_led2_off() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
   led2_Characteristic.writeValue(new TextEncoder().encode("00"));        
 }
+  
+// led3 on 送信
+function send_led3_on() {
+  if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
+  led2_Characteristic.writeValue(new TextEncoder().encode("FF"));        
+} 
+  
+// led3 off 送信
+function send_led3_off() {
+  if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
+  led2_Characteristic.writeValue(new TextEncoder().encode("00"));        
+}
+  
   
 // sw 受信 
 function get_sw() {
