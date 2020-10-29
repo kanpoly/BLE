@@ -29,8 +29,8 @@ LED_B<br>
 <br>
 <br>
 AD値受信<br>
-<input id="val_ad" value="" />
-<button id="ad_get">受信</button>  
+<input id="val_adc" value="" />
+<button id="adc_get">受信</button>  
 <br> 
 SW状態<br>
 <input id="val_sw" value="" />
@@ -78,7 +78,7 @@ d3.select("#led2_send_off").on("click", send_led2_off);
 d3.select("#led3_send_on").on("click", send_led3_on);
 d3.select("#led3_send_off").on("click", send_led3_off);  
 d3.select("#sw_get").on("click", get_sw);
-d3.select("#ad_get").on("click", get_ad);
+d3.select("#adc_get").on("click", get_adc);
   
   
   //デバイスに接続する
@@ -186,14 +186,14 @@ let sw_val=0;
 }
   
 // ad 受信 
-function get_ad() {
-let ad_val=0;
+function get_adc() {
+let adc_val=0;
   try {
       adc_Characteristic.readValue()
       .then(value2 => {
-         ad_val = value2;
-        console.log(new Uint8Array(ad_val));
-        document.querySelector("#val_ad").value = new TextDecoder("utf-8").decode(ad_val);
+         adc_val = value2;
+        console.log(new Uint8Array(adc_val));
+        document.querySelector("#val_adc").value = new TextDecoder("utf-8").decode(adc_val);
       });   
   }
   catch (e) {
