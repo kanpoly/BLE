@@ -84,12 +84,12 @@ d3.select("#adc_get").on("click", get_adc);
   //デバイスに接続する
 function connect() {
   let options = {};
-  //  options.acceptAllDevices = true;    // すべてのデバイスを表示
+    options.acceptAllDevices = true;    // すべてのデバイスを表示
   // 特定のデバイスを表示
-   options.filters = [
-     {services: [SERVICE_UUID]},         // サービスUUIDの指定
+  // options.filters = [
+  //   {services: [SERVICE_UUID]},         // サービスUUIDの指定
   //    {name: "BLE_01"}                    // デバイス名の指定
-   ];
+  // ];
   
   navigator.bluetooth.requestDevice(options)
   .then(device => {
