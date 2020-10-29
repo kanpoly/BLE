@@ -158,13 +158,13 @@ function send_led2_off() {
 // led3 on 送信
 function send_led3_on() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led2_Characteristic.writeValue(new TextEncoder().encode("FF"));        
+  led3_Characteristic.writeValue(new TextEncoder().encode("FF"));        
 } 
   
 // led3 off 送信
 function send_led3_off() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led2_Characteristic.writeValue(new TextEncoder().encode("00"));        
+  led3_Characteristic.writeValue(new TextEncoder().encode("00"));        
 }
   
   
