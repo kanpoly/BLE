@@ -4,40 +4,41 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
 <title>BLE_TEST_Ver_1.0</title>
 </head>
 
 <body>
-BLE_Test 001.0
+<div class="container"> 
+<h1> BLE_Test 001.0</h1> 
+<p>接続デバイス名</p>
+
+<input id="devicename" value="未接続" />
 <br>
-接続デバイス名 <input id="devicename" value="未接続" />
-<br>  
-<button id="connect">接続</button>
-<button id="disconnect">切断</button>
-<br>
-<br>
-LED_R<br>
+<button id="connect-button">接続</button>
+<button id="disconnect-button">切断</button>
+
+<p>LED_R</p>
 <button id="led1_send_hi">HI</button>  <button id="led1_send_mid">MID</button>  <button id="led1_send_off">OFF</button>
-<br>
-<br>
-LED_G<br>
+
+<p>LED_G</p>
 <button id="led2_send_hi">HI</button>  <button id="led2_send_mid">MID</button>  <button id="led2_send_off">OFF</button>
-<br>
-<br>
-LED_B<br>
+
+<p>LED_B</p>
 <button id="led3_send_hi">HI</button>  <button id="led3_send_mid">MID</button>  <button id="led3_send_off">OFF</button>
-<br>
-<br>
-AD値受信<br>
+
+<p>AD値受信</p>
 <input id="val_adc" value="" />
-<button id="adc_get">受信</button>  
-<br> 
-SW状態<br>
+<button id="adc_get">受信</button>
+
+<p>SW状態</p>
 <input id="val_sw" value="" />
 <button id="sw_get">受信</button>  
-<br>
-<br>
- 
+
+
+</div>
 
   
 
@@ -63,8 +64,8 @@ let adc_Characteristic;
   
   
 //ボタンイベントリスナー
-d3.select("#connect").on("click", connect);
-d3.select("#disconnect").on("click", disconnect);
+d3.select("#connect-button").on("click", connect);
+d3.select("#disconnect-button").on("click", disconnect);
 d3.select("#led1_send_hi").on("click", send_led1_hi);
 d3.select("#led1_send_mid").on("click", send_led1_mid);
 d3.select("#led1_send_off").on("click", send_led1_off);
