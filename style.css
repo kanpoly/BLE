@@ -1,135 +1,111 @@
-@charset "utf-8";
-/* CSS Document */
-
-/*************************** RESET ***************************/
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
-}
-/*************************** RESET ***************************/
-
-
-html, body {
-	height: 100%;
-	width: 100%;
-	font-family: 'Lato', Verdana, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-	min-width: 640px;
-	position: relative;
-  background-color: #f0f0f0;
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-hr{
-  border-width: 1px;
-  border-color: #fff;
-  border-style: solid;
-  margin: 20px 0px 20px 0px;
+button{
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  line-height: 1.0;
 }
 
-.container{
-  margin: auto;
-  width: 100%;
-  min-height: 100%;
-  max-width: 640px;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-  background-color: #f0f0f0;
-  position: relative;
+input {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+  line-height: 2.0;
+  width: 210px;
 }
-.title{
-  width: 100%;
+
+h1,p {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  line-height: 0.1;
+}
+
+@media (max-width: 768px) {
+  /* タブレット以下 */
+  .container {
+    width: 50%;
+  }
+}
+
+.card {
   background-color: #fff;
-  padding: 20px 0px 20px 0px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
-.contents{
-  padding: 25px 0px 100px 0px;
+.button-container {
+  display: flex;
+  justify-content: space-between;
 }
 
-.footer{
-  width: 100%;
-  font-size:12px;
-  position: absolute;
-  bottom: 0px;
-  height: 60px;
-  color: #9a9a9a;
+#connect-button {
+  /* 接続ボタンのスタイル */
+  background-color: rgba(142, 142, 255, 0.473);
+  color: rgb(10, 10, 10);
 }
 
-.margin{
-  border-left:  70px;
-  border-right: 70px;
-  border-style: solid;
-  box-sizing: border-box;
-  border-color: rgba(0, 0, 0, 0);
+#disconnect-button {
+  /* 切断ボタンのスタイル */
+  background-color: rgb(255, 118, 118);
+  color: rgb(0, 0, 0);
 }
 
-.button{
-  border-width: 1px;
-  border-color: #e6e6e6;
-  border-style: solid;
-  background-color: #fff;
-  padding: 5px 20px 5px 20px;
-  color: #4d4d4d;
-  font-size: 14px;
-  font-weight: 300;
-  margin: 0px;
-}
-.button:hover{
-  border-color: #ccc;
-}
-.button:active{
-  background-color: #f0f0f0;
+button {
+  background-color: #323332; /* ボタンの背景色 */
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
 }
 
-#chart{
-	margin-bottom: 20px;
+button:hover {
+  background-color: #8b8b8b; /* マウスオーバー時の色 */
 }
 
-#title{
-  color:#ff8319;
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 2em;
+button:active {
+  background-color: #fffdfd;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
-#subtitle{
-  color:#808080;
-  font-size: 15px;
-  font-weight: 300;
+.led-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-#data_text, #data_text2{
-  color:#448aff;
-  font-size:72px;
-  font-weight: 300;
-  line-height: 1.5em;
+.led-control span {
+  margin-right: 10px;
+  font-weight: bold;
 }
 
-#device_name, #device_name2{
-  color:#ff8319;
-  font-size:36px;
-  font-weight: 300;
-  line-height: 1.5em;
+.value-display {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-#uuid_name, #uuid_name2{
-  color:#ff8319;
-	font-size:14px;
-  font-weight: 300;
+.value-display span {
+  margin-right: 10px;
 }
 
-#status, #status2{
-	color:#448aff;
-	font-size:14px;
-  font-weight: 300;
+.value-display input {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100px;
 }
 
-
-
-a { text-decoration: none; }
-a:link { color: #9a9a9a; }
-a:visited { color: #9a9a9a; }
