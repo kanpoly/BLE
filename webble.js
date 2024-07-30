@@ -86,58 +86,59 @@ function connect() {
 // led1 Hi 送信
 function send_led1_hi() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led1_Characteristic.writeValue(new TextEncoder().encode("FF"));        
+  led1_Characteristic.writeValue(Uint8Array.from([0xFF])); 
+//  console.log((0xff).toString(16))       
 } 
 
 // led1 MID 送信
 function send_led1_mid() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led1_Characteristic.writeValue(new TextEncoder().encode("10"));        
+  led1_Characteristic.writeValue(Uint8Array.from([0x10]));        
 } 
 
   
 // led1 off 送信
 function send_led1_off() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led1_Characteristic.writeValue(new TextEncoder().encode("00"));        
+  led1_Characteristic.writeValue(Uint8Array.from([0x00]));        
 } 
   
 // led2 Hi 送信
 function send_led2_hi() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led2_Characteristic.writeValue(new TextEncoder().encode("FF"));        
+  led2_Characteristic.writeValue(Uint8Array.from([0xFF]));        
 } 
 
 // led2 MID 送信
 function send_led2_mid() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led2_Characteristic.writeValue(new TextEncoder().encode("10"));        
+  led2_Characteristic.writeValue(Uint8Array.from([0x10]));        
 } 
 
   
 // led2 off 送信
 function send_led2_off() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led2_Characteristic.writeValue(new TextEncoder().encode("00"));        
+  led2_Characteristic.writeValue(Uint8Array.from([0x00]));        
 } 
 
 // led3 Hi 送信
 function send_led3_hi() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led3_Characteristic.writeValue(new TextEncoder().encode("FF"));        
+  led3_Characteristic.writeValue(Uint8Array.from([0xFF]));        
 } 
 
 // led3 MID 送信
 function send_led3_mid() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led3_Characteristic.writeValue(new TextEncoder().encode("10"));        
+  led3_Characteristic.writeValue(Uint8Array.from([0x10]));        
 } 
 
   
 // led3 off 送信
 function send_led3_off() {
   if (!bluetoothDevice || !bluetoothDevice.gatt.connected ) return ;
-  led3_Characteristic.writeValue(new TextEncoder().encode("00"));        
+  led3_Characteristic.writeValue(Uint8Array.from([0x00]));        
 }   
 
 // sw 受信 
